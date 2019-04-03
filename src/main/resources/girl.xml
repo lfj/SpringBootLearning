@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="girlService" class="com.lfj.demo.service.impl.GirlService" scope="prototype"/>
+        <bean id="girlService2" class="com.lfj.demo.service.impl.GirlService" scope="singleton"/>
+        <bean id="giraffeService" class="com.lfj.demo.service.impl.GiraffeService" scope="singleton"/>
+</beans>
