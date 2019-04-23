@@ -6,7 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -45,12 +47,24 @@ public class GirlEntity implements Serializable{
     private byte[] headImage;
 
     @Column(name = "persion_tag")
-    @Enumerated(EnumType.ORDINAL)/* 在底层保存枚举类型*/
+    @Enumerated(EnumType.ORDINAL) /* 在底层保存枚举类型*/
     private PersionTag persionTag;
 
     @Column(name = "persion_tag2")
-    @Enumerated(EnumType.STRING)/* 在底层保存String类型*/
+    @Enumerated(EnumType.STRING) /* 在底层保存String类型*/
     private PersionTag persionTag2;
+
+    @ElementCollection(targetClass = String.class) /* 该属性指定集合属性中集合元素的类型 */
+    @CollectionTable(name = "school_inf1", joinColumns = @JoinColumn(name = "persion_id", nullable = false))
+    @Column(name = "school_name")
+    @OrderColumn(name = "list_order")
+    private List<String> schools = new ArrayList<>();
+
+//    @ElementCollection(targetClass = String.class)
+//    @CollectionTable(name = "school1_inf", joinColumns = @JoinColumn(name = "persion_id", nullable = false))
+//    @Column(name = "school1_name")
+//    @OrderColumn(name = "array_order")
+//    private String[] schools1;
 
     public String getId() {
         return id;
@@ -131,4 +145,20 @@ public class GirlEntity implements Serializable{
     public void setPersionTag2(PersionTag persionTag2) {
         this.persionTag2 = persionTag2;
     }
+
+    public List<String> getSchools() {
+        return schools;
+    }
+
+    public void setSchools(List<String> schools) {
+        this.schools = schools;
+    }
+
+//    public String[] getSchools1() {
+//        return schools1;
+//    }
+//
+//    public void setSchools1(String[] schools1) {
+//        this.schools1 = schools1;
+//    }
 }
