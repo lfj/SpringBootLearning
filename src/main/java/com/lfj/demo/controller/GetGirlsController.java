@@ -1,6 +1,7 @@
 package com.lfj.demo.controller;
 
 import com.lfj.demo.aspect.Risk;
+import com.lfj.demo.aspect.WebLog;
 import com.lfj.demo.model.Girl;
 import com.lfj.demo.service.IGirlService;
 import org.slf4j.Logger;
@@ -43,6 +44,7 @@ public class GetGirlsController {
     }
 
     @GetMapping("/getGirlInfo2")
+    @WebLog(description = "调用了获取妹子信息的接口")
     public Girl getGirlInfo2(@RequestParam(value = "name", required = false) String name) {
         Girl girl = new Girl();
         girl.setId("2");
